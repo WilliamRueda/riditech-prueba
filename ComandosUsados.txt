@@ -1,0 +1,10 @@
+npm init -y crea un proyecto npm por defecto
+npm install --save sequelize  //instala sequalize
+npm install --save sequelize-cli  //Instalasequalize-cli para poder usar migraciones
+npm install --save mysql2 //Instala mysql para poder usar sus librerias
+npx sequelize --help //se usa para ver las distintas funcionalidades de sequalize
+npx sequelize init //iniciar el proyecto en sequelize 
+npx sequelize model:generate --name TipoRespuesta --atributes Tipo:STRING // crear tabla por medio de sequelize y migrarla
+npx sequelize db:migrate // realizar migraciones
+npm install body-parser expres nodemon//crear dependencias para el servidor
+
