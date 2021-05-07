@@ -43,18 +43,13 @@ router.get('/listUser', async (req, res)=>{
     try {
        
         let email= req.params.email;
-        let user= await db.User.findAll({
+        let user= await db.User.findOne({
             where:{
               email:email
             }
           }
         )
-          .then(user => {
-            return user;
-          })
-          .catch(err => {
-            console.log(err)
-          })
+         
         res.status(200).send(user);
         console.log(user);
     } catch (error) {
@@ -74,6 +69,7 @@ try {
     let password= req.body.password;
     let email= req.body.email;
     let edad= req.body.edad;
+    let estado = req.body.estado;
     console.log(ide);
     console.log(name);
     let user= await db.User.findByPk(ide);
@@ -81,7 +77,8 @@ try {
          name:name,
          email:email,
          password:password,
-         edad:edad
+         edad:edad,
+         estado:estado
     }, {
     where: {
         ide:user.ide,
@@ -117,6 +114,20 @@ router.post('/delete/:id', async (req,res )=>{
       
     }
     });
+
+    router.get('/search/:id', async (req,res )=>{
+        try {
+            let ide= req.params.id;
+            let name= req.body.name;
+            let user= await db.User.findByPk(ide);
+          
+            res.status(200).send(user); 
+        } catch (error) {
+            res.status(400).send('No se pudieron obtener los usuario');
+            res.status(400).send(user);
+          
+        }
+        });
 
 
 
